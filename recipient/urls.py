@@ -7,9 +7,9 @@ from recipient.views import (RecipientListView, RecipientCreateView, RecipientDe
 app_name = RecipientConfig.name
 
 urlpatterns = [
-    path("", RecipientListView.as_view(), name='list'),
-    path("products/<int:pk>", RecipientDetailView.as_view(), name='product_info'),
-    path("create/", RecipientCreateView.as_view(), name='create_product'),
-    path("edit/<int:pk>",RecipientUpdateView.as_view(), name='update_product'),
-    path("delete/<int:pk>", RecipientDeleteView.as_view(), name='delete_product'),
+    path("", RecipientListView.as_view(), name="list"),
+    path("<int:pk>/", RecipientDetailView.as_view(), name="view"),
+    path("create/", RecipientCreateView.as_view(), name="create"),
+    path("<int:pk>/update/", RecipientUpdateView.as_view(), name="edit"),
+    path("<int:pk>/delete/", RecipientDeleteView.as_view(), name="delete"),
 ]
