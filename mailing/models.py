@@ -27,7 +27,7 @@ class MailingSettings(models.Model):
     Модель настроек рассылки
     """
     first_datetime = models.DateTimeField(auto_now_add=True, verbose_name='Начало рассылки')
-    last_datetime = models.DateTimeField(verbose_name='Конец рассылки')
+    last_datetime = models.DateTimeField(verbose_name='Конец рассылки', **NULLABLE)
     message = models.ForeignKey(Message, on_delete=models.CASCADE, verbose_name='Сообщения')
     recipient = models.ManyToManyField(Recipient, verbose_name='Получатели')
     frequency = models.CharField(max_length=50, choices=FREQUENCY_CHOICES, verbose_name='Частота рассылки')

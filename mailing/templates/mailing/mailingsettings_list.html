@@ -1,0 +1,33 @@
+{% extends 'recipient/base.html' %}
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="col-12 mb-5">
+            <h2 class="display-4 fw-normal text-body-emphasis">Запланированные рассылки</h2>
+            <h3>
+                <a class="btn btn-outline-primary" href="{% url 'mailing:settings_create' %}">Запланировать рассылку</a>
+            </h3>
+        </div>
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            {% for object in object_list %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">Создана: {{ object.first_datetime }}</p>
+                        {% for item in object.recipient.all %}
+                        <p class="card-title pricing-card-title">Для: {{ item }}</p>
+                        {% endfor %}
+                        <p class="card-title pricing-card-title">Периодичность: {{ object.frequency }}</p>
+                        <p class="card-title pricing-card-title">Завершится: {{ object.last_datetime }}</p>
+                        <div class="btn-group">
+                            <a class="btn btn-primary"
+                               href="{% url 'mailing:settings_view' object.pk %}" role="button">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

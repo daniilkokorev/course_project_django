@@ -1,0 +1,28 @@
+{% extends 'recipient/base.html' %}
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-title pricing-card-title">{{ object.message.title }}</p>
+                        <p class="card-title pricing-card-title">Начало: {{ object.first_datetime }}</p>
+                        <p class="card-title pricing-card-title">Для: {{ object.recipient }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a class="ms-2 btn btn-primary" href="{% url 'mailing:settings_edit' object.pk %}"
+                                   role="button">Изменить</a>
+                                <a class="ms-2 btn btn-primary" href="{% url 'mailing:settings_delete' object.pk %}"
+                                   role="button">Удалить</a>
+                                <a class="ms-2 btn btn-primary" href="{% url 'mailing:settings_list' %}"
+                                   role="button">Назад</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

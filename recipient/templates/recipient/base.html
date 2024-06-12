@@ -1,49 +1,38 @@
 {% load static %}
 <!doctype html>
 <html lang="ru" data-bs-theme="auto">
-  <head><script src="{% static 'js/color-modes.js' %}"></script>
+    <head>
+        <meta charset="utf-8">
+        <title>Управление рассылками</title>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Марк Отто, Джейкоб Торнтон и контрибьюторы Bootstrap">
-    <meta name="generator" content="Hugo 0.112.5">
-    <title>Blog Template · Bootstrap v5.3</title>
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container py-3">
+              <header>
+                  <div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+                      <a href="{% url 'mailing:list' %}" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+                          <span class="fs-4">Сервис управления рассылками</span>
+                      </a>
+                      <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'mailing:list' %}">Все рассылки</a>
+                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'recipient:list' %}">Все получатели</a>
+                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'recipient:create' %}">Добавить получателя</a>
+                          <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'mailing:settings_list' %}">Планирование рассылок</a>
+                      </nav>
+                  </div>
+              </header>
 
+        {% block content %}
+        {% endblock %}
 
-
-
-<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
-<link rel="stylesheet" href="/docs/5.3/vendor/imazin/imazin.css">
-
-
-    <!-- Custom styles for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Playfair&#43;Display:700,900&amp;display=swap" rel="stylesheet">
-    <!-- Custom styles for this template -->
-    <link href="blog.css" rel="stylesheet">
-  </head>
-  <body>
-
-  <div class="nav-scroller py-1 mb-3 border-bottom">
-    <nav class="nav nav-underline justify-content-between">
-      <a class="nav-item nav-link link-body-emphasis active" href="{% url 'recipient:list' %}">Все получатели</a>
-      <a class="nav-item nav-link link-body-emphasis" href="{% url 'recipient:create' %}">Добавить получателя</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Technology</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Design</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Culture</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Business</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Politics</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Opinion</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Science</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Health</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Style</a>
-      <a class="nav-item nav-link link-body-emphasis" href="#">Travel</a>
-    </nav>
-  </div>
-  {% block content %}
-
-  {% endblock %}
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-
+        <footer class="pt-4 my-md-5 pt-md-5 border-top">
+            <div class="row">
+                  <div class="col-12 col-md">
+                        <small class="d-block mb-3 text-body-secondary">&copy; 2024</small>
+                  </div>
+            </div>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
     </body>
 </html>
