@@ -5,6 +5,7 @@ from recipient.models import Recipient
 NULLABLE = {"blank": True, "null": True}
 FREQUENCY_CHOICES = [('daily', 'раз в день'), ('weekly', 'раз в неделю'), ('monthly', 'раз в месяц'), ]
 STATUS_OF_NEWSLETTER = [('Create', 'Создана'), ('Started', 'Отправлено'), ('Done', 'Завершена'), ]
+STATUS_CHOICES = [('success', 'Успешно'), ('error', 'Ошибка'), ]
 
 
 class Message(models.Model):
@@ -47,7 +48,7 @@ class MailingStatus(models.Model):
     Модель статуса рассылки
     """
     last_datetime = models.DateTimeField(auto_now_add=True, verbose_name='last_datetime')
-    status = models.BooleanField(default=False, verbose_name='status')
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='', verbose_name='status')
     mailing_response = models.TextField(verbose_name='mailing_response')
     mailing_list = models.ForeignKey(MailingSettings, on_delete=models.CASCADE, verbose_name='рассылка')
     recipient = models.ForeignKey(Recipient, on_delete=models.CASCADE, verbose_name='клиент рассылки', **NULLABLE)
