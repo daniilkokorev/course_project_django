@@ -1,0 +1,28 @@
+{% extends 'recipient/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="col-12 mt-5">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="col-6 text-center mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="cart-title">
+                            <h3>Регистрация</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        {% if user.is_authenticated %}
+                        <button type="submit" class="btn btn-success btn-lg">Сохранить</button>
+                        {% else %}
+                        <button type="submit" class="btn btn-success btn-lg">Зарегистрироваться</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

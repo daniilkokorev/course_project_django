@@ -12,6 +12,8 @@
                             <div class="btn-group">
                                 <a class="ms-2 btn btn-primary" href="{% url 'recipient:delete' object.pk %}"
                                    role="button">Удалить</a>
+                                <a class="ms-2 btn btn-primary" href="{% url 'recipient:edit' object.pk %}"
+                                   role="button">Изменить</a>
                                 <a class="ms-2 btn btn-primary" href="{% url 'recipient:list' %}"
                                    role="button">Назад</a>
                             </div>

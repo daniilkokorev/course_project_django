@@ -1,0 +1,25 @@
+{% extends 'recipient/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="col-12 mt-5">
+        <form class="row" method="post" enctype="multipart/form-data">
+            <div class="col-6 text-center mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="cart-title">
+                            <h3>Вход</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-success btn-lg">Войти</button>
+                        <a class="btn btn-link" href="{% url 'users:reset_password' %}">Восстановить пароль</a>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

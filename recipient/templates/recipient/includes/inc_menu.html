@@ -1,0 +1,26 @@
+<div class="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
+    <a href="{% url 'mailing:list' %}" class="d-flex align-items-center link-body-emphasis text-decoration-none">
+        <span class="fs-4">Сервис управления рассылками</span>
+    </a>
+    <nav class="d-inline-flex mt-2 mt-md-0 ms-md-auto">
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'mailing:list' %}">Все рассылки</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'recipient:list' %}">Все
+            получатели</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'recipient:create' %}">Добавить
+            получателя</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'mailing:settings_list' %}">Планирование
+            рассылок</a>
+        {% if user.is_authenticated %}
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:profile' %}">Профиль</a>
+        <div class="container">
+            <form action="{% url 'users:logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success">Выйти</button>
+            </form>
+        </div>
+        {% else %}
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:login' %}">Вход</a>
+        <a class="me-3 py-2 link-body-emphasis text-decoration-none" href="{% url 'users:register' %}">Регистрация</a>
+        {% endif %}
+    </nav>
+</div>

@@ -1,6 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
+from mailing.forms import MailingSettingsForm, MassageForm
 from mailing.models import MailingSettings, Message, MailingStatus
 
 
@@ -9,7 +10,7 @@ class MessageCreateView(CreateView):
     Контролер создает сообщение
     """
     model = Message
-    fields = ['title', 'content']
+    form_class = MassageForm
     success_url = reverse_lazy('mailing:list')
 
 
@@ -25,7 +26,7 @@ class MessageUpdateView(UpdateView):
     Контролер редактирует сообщение
     """
     model = Message
-    fields = ['title', 'content']
+    form_class = MassageForm
     success_url = reverse_lazy('mailing:list')
 
 
@@ -49,7 +50,7 @@ class MailingSettingsCreateView(CreateView):
     Контролер создает рассылку
     """
     model = MailingSettings
-    fields = ['frequency', 'message', 'recipient', 'last_datetime',]
+    form_class = MailingSettingsForm
     success_url = reverse_lazy('mailing:settings_list')
 
 
@@ -58,7 +59,7 @@ class MailingSettingsUpdateView(UpdateView):
     Контролер редактирует рассылку
     """
     model = MailingSettings
-    fields = ['last_datetime', 'message', 'recipient', 'frequency']
+    form_class = MailingSettingsForm
     success_url = reverse_lazy('mailing:settings_list')
 
 
