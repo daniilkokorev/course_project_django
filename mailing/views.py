@@ -1,6 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.exceptions import PermissionDenied
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, TemplateView
 
 from mailing.forms import MailingSettingsForm, MassageForm, MailingModeratorForm
@@ -25,7 +25,6 @@ class MessageTemplateView(LoginRequiredMixin, TemplateView):
         recipient = Recipient.objects.all()
         context_data['recipient'] = len(recipient)
         return context_data
-
 
 
 class MessageCreateView(LoginRequiredMixin, CreateView):
@@ -109,6 +108,11 @@ class MailingSettingsUpdateView(LoginRequiredMixin, UpdateView):
         if user.has_perm('mailing.change_mailingsettings_setting_status'):
             return MailingModeratorForm
         return PermissionDenied
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs.update({'request': self.request})
+        return kwargs
 
 
 class MailingSettingsDeleteView(LoginRequiredMixin, DeleteView):

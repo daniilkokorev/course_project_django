@@ -18,8 +18,8 @@ urlpatterns = [
     path("<int:pk>/update/", MessageUpdateView.as_view(), name="edit"),
     path("<int:pk>/delete/", MessageDeleteView.as_view(), name="delete"),
     path("settings", MailingSettingsListView.as_view(), name="settings_list"),
-    path("settings/<int:pk>/", cache_page(60)(MailingSettingsDetailView.as_view()), name="settings_view"),
-    path("settings/create/", MailingSettingsCreateView.as_view(), name="settings_create"),
-    path("settings/<int:pk>/update/", MailingSettingsUpdateView.as_view(), name="settings_edit"),
-    path("settings/<int:pk>/delete/", MailingSettingsDeleteView.as_view(), name="settings_delete"),
+    path('settings_create/', MailingSettingsCreateView.as_view(), name='settings_create'),
+    path('settings_view/<int:pk>/', MailingSettingsDetailView.as_view(), name='settings_view'),
+    path('settings_edit/<int:pk>/', MailingSettingsUpdateView.as_view(), name='settings_edit'),
+    path('settings_delete/<int:pk>/', MailingSettingsDeleteView.as_view(), name='settings_delete'),
     ]
